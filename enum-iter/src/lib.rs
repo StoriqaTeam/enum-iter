@@ -35,13 +35,13 @@ fn impl_enum_iter(name: &Ident, variants: &[Variant]) -> quote::Tokens {
         }
 
         impl #name {
-            fn enum_iter() -> #interface {
+            pub fn enum_iter() -> #interface {
                 #interface::default()
             }
         }
 
         impl #interface {
-            fn from_usize(n: usize) -> #name {
+            pub fn from_usize(n: usize) -> #name {
                 match n {
                     #(#match_usize)*
                     _ => unreachable!(), // I think
