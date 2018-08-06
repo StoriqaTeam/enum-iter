@@ -15,9 +15,7 @@ pub fn enum_iterator(input: TokenStream) -> TokenStream {
     let gen = match ast.body {
         Body::Enum(ref variants) => impl_enum_iter(name, variants),
         Body::Struct(_) =>
-            quote! {
-                impl EnumIteratorOnlyWorksForEnumsNotStructsSorryNotSorry for #name { }
-            },
+            panic!("Cannot derive EnumIterator for structs"),
     };
     gen.parse().unwrap()
 }
